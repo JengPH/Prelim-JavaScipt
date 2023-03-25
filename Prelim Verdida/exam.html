@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <title>Prelim</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+        <body>
+            
+            <div class="container">
+                <div class="container_u_name">
+                    <input type="text" placeholder="Name" class="name" required>
+                </div>
+                <div class= container_u_age">
+                    <input type="text" placeholder="Age" class="age" required>
+                </div>
+                <div class="container_btnAdd">
+                    <button onclick="inputValue()" class="btn_add">ADD TO LIST</button>
+                </div>
+            </div>
+
+            <template>
+                <div class="card">
+                    <div class="title">
+                    </div>
+                    <div class="body">
+                    </div>
+                  </div>
+              </template>
+              <div class="parent"></div>
+              </div>
+        </body>
+</html>
+
+<script>
+    function inputValue()
+    {
+        var textName = document.querySelector(".name").value
+        var textAge = document.querySelector(".age").value
+
+        if(textName === "" || textAge === "") 
+        {
+            alert("sudli pod!");
+        }
+        else
+        {
+            var json = {
+            prodname : textName,
+            descr : textAge
+            };
+
+            var template = document.querySelector("template");
+            var parent = document.querySelector(".parent"); //butnganan sa gi clone
+
+            var cloned  = template.content.cloneNode(true);
+            
+            cloned.querySelector(".card .title").innerText = "Name : " + json.prodname;
+            cloned.querySelector(".card .body").innerText = "Age : " + json.descr;
+
+            parent.append(cloned);
+
+            document.querySelector(".name").value = "";
+            document.querySelector(".age").value = "";
+        }
+    }
+</script>
